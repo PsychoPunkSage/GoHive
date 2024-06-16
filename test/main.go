@@ -24,14 +24,49 @@ func main() {
 	fmt.Println(msg)
 
 	// Concise if
-
 	if len := getLength(12); len < 1 {
 		fmt.Println("Invalid")
 	} else {
-		fmt.Printf("Valid")
+		fmt.Println("Valid")
 	}
+
+	// functions
+	fmt.Println(concat("AP ", "is here!!!"))
+
+	// Memory assignment
+	sendSoFar := 123
+	const toAdd = 23
+	sendSoFar = incrementSends(sendSoFar, toAdd)
+	fmt.Println("You have sent", sendSoFar, "messages so far")
+
+	// Anonymous Struct
+	myCar := struct {
+		company string
+		model   string
+	}{
+		company: "BMW",
+		model:   "i8",
+	}
+
+	fmt.Printf("%v\n", myCar)
 }
 
 func getLength(rand int) int {
 	return (rand/2 + 20)
+}
+
+func concat(s1, s2 string) string {
+	return s1 + s2
+}
+
+// func take_another_finc(func(string, string) string, s string) string {
+// 	return func(s1, s2 string) string {
+//         return s1 + s2
+//     }(s, s)
+// }
+
+func incrementSends(sendSoFar, toAdd int) int {
+	sendSoFar += toAdd
+	// fmt.Println(sendSoFar)
+	return sendSoFar
 }
