@@ -1,6 +1,27 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+
+// Struct Methods
+type rect struct {
+	width  int
+	height int
+}
+
+func (r rect) area() int {
+	return r.width * r.height
+}
+
+type authentication struct {
+	username string
+	password string
+}
+
+func (auth authentication) basicAuth() string {
+	return fmt.Sprintf("Authentication: Basic %s:%s", auth.username, auth.password)
+}
 
 func main() {
 	var integer int8 = 12
@@ -49,6 +70,35 @@ func main() {
 	}
 
 	fmt.Printf("%v\n", myCar)
+
+	// Embeded Structs
+	// 	Here we take all the fields from one struct and shove it into the other...
+	type Car struct {
+		company string
+		model   string
+	}
+
+	type Truck struct {
+		Car
+		Size int
+	}
+
+	lanesTruck := Truck{
+		Size: 10,
+		Car: Car{
+			company: "BMW",
+			model:   "i8",
+		},
+	}
+
+	fmt.Println("Car name:", lanesTruck.company, lanesTruck.model)
+
+	// Function for Struct
+	r := rect{width: 10, height: 5}
+	fmt.Println("Area:", r.area())
+
+	a := authentication{username: "AP", password: "ap is here"}
+	fmt.Println(a.basicAuth())
 }
 
 func getLength(rand int) int {
