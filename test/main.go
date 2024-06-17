@@ -6,12 +6,15 @@ import (
 
 // Struct Methods
 type rect struct {
-	width  int
-	height int
+	width, height float64
 }
 
-func (r rect) area() int {
+func (r rect) area() float64 {
 	return r.width * r.height
+}
+
+func (r rect) perimeter() float64 {
+	return r.width + r.height
 }
 
 type authentication struct {
@@ -71,7 +74,10 @@ func main() {
 
 	fmt.Printf("%v\n", myCar)
 
-	// Embeded Structs
+	/////////////////////
+	// Embeded Structs //
+	/////////////////////
+
 	// 	Here we take all the fields from one struct and shove it into the other...
 	type Car struct {
 		company string
@@ -94,11 +100,17 @@ func main() {
 	fmt.Println("Car name:", lanesTruck.company, lanesTruck.model)
 
 	// Function for Struct
-	r := rect{width: 10, height: 5}
+	r := rect{width: 12.5, height: 5.0}
 	fmt.Println("Area:", r.area())
 
 	a := authentication{username: "AP", password: "ap is here"}
 	fmt.Println(a.basicAuth())
+
+	////////////////
+	// Interfaces //
+	////////////////
+	shapeMethod(r)
+	interfaces()
 }
 
 func getLength(rand int) int {
