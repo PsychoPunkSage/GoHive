@@ -109,7 +109,6 @@ func main() {
 	////////////////
 	// Interfaces //
 	////////////////
-	shapeMethod(r)
 	interfaces()
 }
 
