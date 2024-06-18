@@ -114,7 +114,7 @@ func main() {
 	////////////
 	// Errors //
 	////////////
-	errors()
+	errors_package()
 }
 
 func getLength(rand int) int {
