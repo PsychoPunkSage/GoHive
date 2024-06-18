@@ -110,6 +110,11 @@ func main() {
 	// Interfaces //
 	////////////////
 	interfaces()
+
+	////////////
+	// Errors //
+	////////////
+	errors()
 }
 
 func getLength(rand int) int {
