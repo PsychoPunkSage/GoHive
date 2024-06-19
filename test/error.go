@@ -5,6 +5,11 @@ import (
 	"fmt"
 )
 
+/*
+	.cap(): max length of slice before reallocation of array is necessary.
+	.len(): no. of elements present.
+*/
+
 func sendSMSToCouple(msgToCustomer, msgToSpouse string) (float64, error) {
 	cost_customer, err := sendSMS(msgToCustomer)
 	if err != nil {
@@ -44,7 +49,7 @@ func divide(dividend, divisor float64) (float64, error) {
 	}
 
 	if divisor == 1 {
-		return dividend, errors.New("No dividing by 1")
+		return dividend, errors.New("no dividing by 1")
 	}
 	return dividend / divisor, nil
 }
