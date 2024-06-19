@@ -115,6 +115,11 @@ func main() {
 	// Errors //
 	////////////
 	errors_package()
+
+	///////////
+	// Slice //
+	///////////
+	slices()
 }
 
 func getLength(rand int) int {
