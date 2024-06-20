@@ -120,6 +120,11 @@ func main() {
 	// Slice //
 	///////////
 	slices()
+
+	//////////
+	// Maps //
+	//////////
+	maps()
 }
 
 func getLength(rand int) int {
