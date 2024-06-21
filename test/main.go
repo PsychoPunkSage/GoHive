@@ -125,6 +125,11 @@ func main() {
 	// Maps //
 	//////////
 	maps()
+
+	//////////////////
+	// AdvancedFunc //
+	//////////////////
+	advanced_func()
 }
 
 func getLength(rand int) int {
