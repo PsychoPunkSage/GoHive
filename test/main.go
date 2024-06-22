@@ -130,6 +130,21 @@ func main() {
 	// AdvancedFunc //
 	//////////////////
 	advanced_func()
+
+	///////////
+	// Defer //
+	///////////
+	defer_func()
+
+	//////////////
+	// Closures //
+	//////////////
+	closures()
+
+	/////////////////
+	// Concurrency //
+	/////////////////
+	concurrenct()
 }
 
 func getLength(rand int) int {
