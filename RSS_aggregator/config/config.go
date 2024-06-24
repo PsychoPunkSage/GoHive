@@ -1,6 +1,7 @@
-package main
+package config
 
 import (
+	"RSS_aggregator/handlers"
 	"RSS_aggregator/internal/database"
 	"encoding/json"
 	"fmt"
@@ -10,7 +11,11 @@ import (
 	"github.com/google/uuid"
 )
 
-func (apiCfg *apiConfig) handlerCreateUser(w http.ResponseWriter, r *http.Request) {
+type APIConfig struct {
+	DB *database.Queries
+}
+
+func (apiCfg *APIConfig) HandlerCreateUser(w http.ResponseWriter, r *http.Request) {
 	type parameters struct {
 		Name string `json:"name"`
 	}
@@ -19,7 +24,7 @@ func (apiCfg *apiConfig) handlerCreateUser(w http.ResponseWriter, r *http.Reques
 	params := parameters{}
 	err := decoder.Decode(&params)
 	if err != nil {
-		respondWithError(w, 400, fmt.Sprintf("Error parsing JSON: %v", err))
+		handlers.RespondWithError(w, 400, fmt.Sprintf("Error parsing JSON: %v", err))
 		return
 	}
 
@@ -30,9 +35,9 @@ func (apiCfg *apiConfig) handlerCreateUser(w http.ResponseWriter, r *http.Reques
 		Name:      params.Name,
 	})
 	if err != nil {
-		respondWithError(w, 400, fmt.Sprintf("Error creating user: %v", err))
+		handlers.RespondWithError(w, 400, fmt.Sprintf("Error creating user: %v", err))
 		return
 	}
 
-	respondWithJson(w, 200, user)
+	handlers.RespondWithJson(w, 200, user)
 }

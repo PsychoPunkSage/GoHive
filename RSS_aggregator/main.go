@@ -1,6 +1,8 @@
 package main
 
 import (
+	"RSS_aggregator/config"
+	"RSS_aggregator/handlers"
 	"RSS_aggregator/internal/database"
 	"database/sql"
 	"fmt"
@@ -13,10 +15,6 @@ import (
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
-
-type apiConfig struct {
-	DB *database.Queries
-}
 
 func main() {
 	godotenv.Load()
@@ -36,7 +34,7 @@ func main() {
 		log.Fatal("Can't connect to database:", err)
 	}
 
-	apiCfg := apiConfig{
+	apiCfg := &config.APIConfig{
 		DB: database.New(conn),
 	}
 
@@ -53,9 +51,9 @@ func main() {
 	}))
 
 	v1Router := chi.NewRouter()
-	v1Router.Get("/healthz", handlerReadiness)
-	v1Router.Get("/err", handlerErr)
-	v1Router.Post("/users", apiCfg.handlerCreateUser)
+	v1Router.Get("/healthz", handlers.HandlerReadiness)
+	v1Router.Get("/err", handlers.HandlerErr)
+	v1Router.Post("/users", apiCfg.HandlerCreateUser)
 
 	router.Mount("/v1", v1Router)
 
