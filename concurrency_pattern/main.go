@@ -2,19 +2,22 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
 func main() {
-	go someFunc("12")
-	go someFunc("13")
-	go someFunc("14")
+	mychannel := make(chan string)
 
-	time.Sleep(1 * time.Second)
+	go func() {
+		mychannel <- someFunc("12")
+	}()
+
+	msg := <-mychannel
+
+	fmt.Println("Message:> ", msg)
 
 	fmt.Println("Hi")
 }
 
-func someFunc(num string) {
-	fmt.Println(num)
+func someFunc(num string) string {
+	return num + "test"
 }
