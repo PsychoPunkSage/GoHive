@@ -6,16 +6,28 @@ import (
 
 func main() {
 	mychannel := make(chan string)
+	anotherChannel := make(chan string)
 
 	go func() {
 		mychannel <- someFunc("12")
 	}()
 
-	msg := <-mychannel
+	go func() {
+		anotherChannel <- someFunc("34")
+	}()
 
-	fmt.Println("Message:> ", msg)
+	// msg := <-mychannel
 
-	fmt.Println("Hi")
+	// fmt.Println("Message:> ", msg)
+
+	// fmt.Println("Hi")
+
+	select { // its gonna block until it receives info from one of the channels.
+	case msgMychannel := <-mychannel:
+		fmt.Println(msgMychannel)
+	case msgAnotherChannel := <-anotherChannel:
+		fmt.Println(msgAnotherChannel)
+	}
 }
 
 func someFunc(num string) string {
