@@ -5,18 +5,19 @@ import (
 	"time"
 )
 
-// func main() {
-// 	// for_select()
-// 	infGoRoutine()
-// }
+func main() {
+	for_select()
+	infGoRoutine()
+}
 
 func for_select() {
 	forChannel := make(chan string, 7) // buffered channel
 	chars := []string{"a", "b", "c", "d", "e", "f", "g"}
 	for _, char := range chars {
-		select {
-		case forChannel <- char:
-		}
+		// select {
+		// case forChannel <- char:
+		// }
+		forChannel <- char
 	}
 
 	close(forChannel)
