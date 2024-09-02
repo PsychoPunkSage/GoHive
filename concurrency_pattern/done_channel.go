@@ -5,9 +5,9 @@ import (
 	"time"
 )
 
-func main() {
-	doneChannel()
-}
+// func main() {
+// 	doneChannel()
+// }
 
 func doneChannel() {
 	done := make(chan bool)
@@ -15,7 +15,7 @@ func doneChannel() {
 	go doWork(done)
 
 	time.Sleep(5 * time.Second)
-	close(done)
+	close(done) // Closing this channel will send a signal
 }
 
 func doWork( /* readonly channel */ done <-chan bool) {

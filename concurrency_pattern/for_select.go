@@ -5,10 +5,10 @@ import (
 	"time"
 )
 
-func main() {
-	for_select()
-	infGoRoutine()
-}
+// func main() {
+// 	for_select()
+// 	// infGoRoutine()
+// }
 
 func for_select() {
 	forChannel := make(chan string, 7) // buffered channel
@@ -37,5 +37,5 @@ func infGoRoutine() {
 		}
 	}()
 
-	time.Sleep(5 * time.Second)
+	time.Sleep(1 * time.Second)
 }
